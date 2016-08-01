@@ -10,6 +10,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<elastic.search.version>2.3.4</elastic.search.version>
+		<jna.version>4.2.2</jna.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -21,6 +22,11 @@
 			<groupId>org.elasticsearch</groupId>
 			<artifactId>elasticsearch</artifactId>
 			<version>${elastic.search.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>net.java.dev.jna</groupId>
+			<artifactId>jna</artifactId>
+			<version>${jna.version}</version>
 		</dependency>
 	</dependencies>
 	<build>
