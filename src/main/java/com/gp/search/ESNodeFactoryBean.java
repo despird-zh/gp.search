@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
  *
  */
 @Component
-public class ElasticSearchNodeFactoryBean implements FactoryBean<Node>,DisposableBean {
+public class ESNodeFactoryBean implements FactoryBean<Node>,DisposableBean {
 
     protected final Logger LOGGER = LoggerFactory.getLogger(getClass());
 
@@ -44,6 +44,7 @@ public class ElasticSearchNodeFactoryBean implements FactoryBean<Node>,Disposabl
 
         settingsBuilder.put("node.name", ConfigSettingUtils.getSystemOption("es.node.name"));
         settingsBuilder.put("path.data", ConfigSettingUtils.getSystemOption("es.path.data"));
+        settingsBuilder.put("path.home", ConfigSettingUtils.getSystemOption("es.path.home"));
         settingsBuilder.put("http.enabled", false);
 
         Settings settings = settingsBuilder.build();
@@ -59,6 +60,7 @@ public class ElasticSearchNodeFactoryBean implements FactoryBean<Node>,Disposabl
     @Override
     public void destroy() throws Exception {
 
+        if(null == node) return;
         try {
             LOGGER.info("Closing ElasticSearch node " + node.settings().get("name") );
             node.close();
